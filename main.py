@@ -40,7 +40,7 @@ class Main:
                     if board.squares[clicked_row][clicked_col]!=0:
                         piece = board.squares[clicked_row][clicked_col].piece
                         print(piece.name)
-                
+                        
                         dragger.save_inital(event.pos)
                         dragger.drag_piece(piece)
                         
@@ -62,6 +62,20 @@ class Main:
                     
                 elif event.type == pygame.MOUSEBUTTONUP:
                     
+                    #dragger.undrag_piece()
+                    #board.squares[clicked_row][clicked_col] = dragger.mouseX, dragger.mouseY
+                                        
+                    clicked_row = dragger.mouseX // sqsize
+                    clicked_col = dragger.mouseY // sqsize
+                    #print(dragger.initial_col, dragger.initial_row)
+                   
+                    board.squares[dragger.initial_col][dragger.initial_row] = 0
+                   
+                    board.squares[clicked_row][clicked_col] = Square(clicked_col, clicked_row, piece)
+                    
+                    
+                    
+                    #board.squares
                     dragger.undrag_piece()
                     
                     

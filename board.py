@@ -11,49 +11,7 @@ class Board:
        self.add_pieces("white")
        self.add_pieces("black")
 
-    def calc_moves(self, piece, row, col):
-        def knight_moves():
-            possible_moves = [
-                (row-2, col+1),
-                (row-2, col-1),
-                (row-1, col+2),
-                (row-1, col-2),
-                (row+2, col+1),
-                (row+2, col-1),
-                (row+1, col+2),
-                (row+1, col-2)
-                ]
-
-            for possible_move in possible_moves:
-                possible_move_row, possible_move_col = possible_move
-                if Square.in_range(possible_move_row, possible_move_col):
-                    
-                    
-                    #if self.squares[possible_move_col][possible_move_row]== 0 or (self.squares[possible_move_col][possible_move_row].isEmpty_or_rival(piece.color)):#self.squares[possible_move_col][possible_move_row].isEmpty_or_rival(piece.color):# and self.squares[possible_move_col][possible_move_row].piece.color!= piece.color):
-                    #initial = Square(row, col)
-                    
-                    if self.squares[possible_move_row][possible_move_col]==0 or self.squares[possible_move_row][possible_move_col].has_rival_piece(piece.color):
-                        
-                        final = Square(possible_move_row, possible_move_col)
-                                
-
-                        move = Move(final)#initial, final)
-                        piece.add_moves(move)
-                        
-        
-        if piece.name == 'pawn':
-            pass
-        elif piece.name == 'knight':
-            knight_moves()
-            
-        elif piece.name == 'bishop':
-            pass
-        elif piece.name == 'rook':
-            pass
-        elif piece.name == 'queen':
-            pass
-        elif piece.name == 'king':
-            pass
+    
         
         
         
