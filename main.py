@@ -1,3 +1,4 @@
+
 import pygame, sys
 from const import *
 from game import Game
@@ -40,10 +41,13 @@ class Main:
                     if board.squares[clicked_row][clicked_col]!=0:
                         piece = board.squares[clicked_row][clicked_col].piece
                         print(piece.name)
-                        
+                        board.calc_moves(piece, clicked_row, clicked_col)
                         dragger.save_inital(event.pos)
                         dragger.drag_piece(piece)
-                        
+                        game.show_bg(screen)
+                        game.show_moves(screen)
+                        game.show_pieces(screen)
+
                     
                         
 
@@ -69,13 +73,13 @@ class Main:
                     clicked_col = dragger.mouseY // sqsize
                     #print(dragger.initial_col, dragger.initial_row)
                    
+                   
                     board.squares[dragger.initial_col][dragger.initial_row] = 0
+                
                    
                     board.squares[clicked_row][clicked_col] = Square(clicked_col, clicked_row, piece)
+                    dragger.piece.moves.clear()
                     
-                    
-                    
-                    #board.squares
                     dragger.undrag_piece()
                     
                     

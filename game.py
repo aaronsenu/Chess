@@ -47,9 +47,17 @@ class Game:
 
                 circle_center = move.final.row * sqsize + sqsize // 2, move.final.col * sqsize + sqsize // 2
 
-                pygame.draw.circle(surface, color, circle_center, 17)  
+                if self.board.squares[move.final.row][move.final.col]==0:
+                    radius = 17
+                    thickness = 0
 
-                #pygame.draw.circle(surface, color, circle_center, 50,7)  
+                elif self.board.squares[move.final.row][move.final.col].has_rival_piece(self.dragger.piece.color):
+                    radius = 50
+                    thickness = 7
+
+                   
+                pygame.draw.circle(surface, color, circle_center, radius, thickness)
+
 
                 #rect = (move.final.row*sqsize, move.final.col*sqsize, sqsize, sqsize)
 
