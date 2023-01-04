@@ -78,6 +78,45 @@ class Board:
                         final = Square(possible_move_row, possible_move_col)
                         move = Move(final)#initial, final)
                         piece.add_moves(move) #adds square to piece moves
+
+        def pawn_moves():
+            #Vertical moves
+            if piece.moved:
+                #steps = 1
+                possible_moves = [(row, col+(1*piece.dir))]
+            else:
+                #steps = 2
+                possible_moves = [(row, col+(1*piece.dir)), (row, col+(1*piece.dir)*2) ]
+  
+            for possible_move in possible_moves:
+                possible_move_row, possible_move_col = possible_move
+                #checks if possible square is within board range
+                if Square.in_range(possible_move_row, possible_move_col):
+                    if self.squares[row][col+(1*piece.dir)]!=0:
+                        break
+                    #checks if square is empty 
+                    if self.squares[possible_move_row][possible_move_col]==0:
+                        #initial = Square(row, col)
+                        final = Square(possible_move_row, possible_move_col)
+                        move = Move(final)#initial, final)
+                        piece.add_moves(move) #adds square to piece moves
+                        
+
+            #Diagonal moves
+            #black:
+            #bottom_right = 1,1, bottom_left = -1,1
+            #white:
+            #top_left = -1,-1, top_right = 1,-1
+            #row: 1, -1  col: piece.dir
+            poss_diag_moves=[(row-1,col+piece.dir),(row+1, col+piece.dir)]
+            for poss_move in poss_diag_moves:
+                poss_move_row, poss_move_col = poss_move
+                if Square.in_range(poss_move_row, poss_move_col):
+                    if self.squares[poss_move_row][poss_move_col]!=0 and self.squares[poss_move_row][poss_move_col].has_rival_piece(piece.color):
+                        final = Square(poss_move_row, poss_move_col)
+                        move = Move(final)#initial, final)
+                        piece.add_moves(move) #adds square to piece moves
+
             
         def knight_moves():
             possible_moves = [
@@ -117,7 +156,7 @@ class Board:
             step_moves(possible_moves)
 
         if piece.name == 'pawn':
-            pass
+            pawn_moves()
         elif piece.name == 'knight':
             knight_moves()
             
