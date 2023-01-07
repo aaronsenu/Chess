@@ -8,8 +8,8 @@ class Dragger:
         self.dragging = False
         self.mouseX = 0
         self.mouseY = 0
-        self.initial_col = 0
-        self.initial_row = 0
+        self.initial_row = None
+        self.initial_col = None
 
     # blit method
     def update_blit(self, surface):
@@ -29,7 +29,7 @@ class Dragger:
         self.mouseX, self.mouseY = pos
 
     def save_inital(self, pos):
-        self.initial_col, self.initial_row = pos[0] // sqsize, pos[1] // sqsize
+        self.initial_row, self.initial_col = pos[0] // sqsize, pos[1] // sqsize
 
     def drag_piece(self, piece):
         self.piece = piece
